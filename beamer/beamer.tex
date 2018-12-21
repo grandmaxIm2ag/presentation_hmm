@@ -1,0 +1,46 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{color, colortbl}
+\usepackage{commath}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usepackage{pgffor}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\usepackage[lined]{algorithm2e}
+\usetheme{Singapore}
+\newlength{\mylen}
+\resetcounteronoverlays{compt}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\usepackage{upgreek}
+\usepackage[doi=false,
+            isbn=false,
+            url=false,
+            bibstyle=authoryear,
+            style=authoryear]{biblatex}
+\bibliography{biblio}%
+\renewcommand{\footfullcite}[1]{\footnote[frame]{\fullcite{#1}}}
+\def\bibfont{\tiny}%
+\begin{document}
+
+\title{ }
+\author{ } 
+\institute{ }
+\date{\today}
+
+\maketitle
+
+\end{document}
