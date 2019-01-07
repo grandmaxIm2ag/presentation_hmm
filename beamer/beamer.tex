@@ -124,18 +124,18 @@
       \Output{ $P(0|\lambda)$}
       Step 1, Initialization :
         $
-        \forall i, \alpha_1(i) = \pi_1 b_i(0_1)
+        \forall i, \alpha_1(i) = \pi_i b_i(0_1)
         $\\
         Step 2, Induction :\\
         \For{$t\gets2:T$}{
           $
-          \alpha_t = \left[ \sum\limits_{j=1}^N\alpha_{t-1}q_{ij}\right]
-          b_jO_t
+          \forall in \alpha_t(i) = \left[ \sum\limits_{j=1}^N\alpha_{t-1}(i)a_{ij}\right]
+          b_j(O_t)
           $
         }
         Step 3, Termination :
         $
-        P(0|\lambda) = \sum\limits \alpha_t(i)
+        P(0|\lambda) = \sum\limits_{i=1}^N \alpha_t(i)
         $
     \end{algorithm}
   }
@@ -148,7 +148,7 @@
     \begin{algorithm}[H]
       \SetKwInOut{Input}{input }
       \SetKwInOut{Output}{output }
-      \Input{$\Lambda$ All the models, $O$ Observed sequence}
+      \Input{$O$ Observed sequence}
       \Output{ $\argmax\limits_{\lambda \in \Lambda} P(0|\lambda)$}
       Step 1, Initialization :\\
       \For{$i\gets1:N$}{
@@ -163,13 +163,13 @@
         }
       }
       Step 3, Termination :\\
-      $P^{*} = \max\limits_{s \in S}[\delta_T(s)$\\
-        $S_T^{*} = \argmax\limits_{s \in S}[\delta_T(s)$\\
-          Step 4, Backtracking :\\ 
-          \For{$t\gets{T-1}:1$}{
-            $S_t^{*} = \psi_{t+1}(s_{t+1 }^{*})$
-          }
-          \Return{$S^{*}$}
+      $P^{*} = \max\limits_{s \in S}[\delta_T(s)]$\\
+      $S_T^{*} = \argmax\limits_{s \in S}[\delta_T(s)]$\\
+      Step 4, Backtracking :\\ 
+      \For{$t\gets{T-1}:1$}{
+        $S_t^{*} = \psi_{t+1}(s_{t+1 }^{*})$
+      }
+      \Return{$S^{*}$}
     \end{algorithm}
         }
         \footfullcite{viterbi}
