@@ -1,6 +1,10 @@
 #include <vector>
 #include "header/utils.hpp"
 #include <cmath>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -33,4 +37,23 @@ float euclidean_dist(vector<int> x, vector<int> y){
     }
     
     return sqrt(res);
+}
+
+vector<string> split(string str, char delim) {
+    vector<string> res;
+
+    stringstream ss(str);
+    string tmp;
+    while (getline(ss, tmp, delim)) {
+	res.push_back(tmp);
+    }
+    return res;
+}
+
+bool find_elem(vector<string> vect, string val){
+    for(int i=0; i<(int)vect.size();i++){
+	if(vect[i].compare(val) == 0)
+	    return true;
+    }
+    return false;
 }
