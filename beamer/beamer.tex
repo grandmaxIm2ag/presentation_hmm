@@ -186,25 +186,72 @@
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Detection}
+  \framesubtitle{Data}
+  $S = \{1,2,3,4\}$\\
+  $M = \{1,2,3,4\}$\\
+  $\pi = \{1.0,0,0\}$\\
+  $O = \{2,1,2,4,2,3,4,3,4,3\}$
+  \begin{columns}[T]
+    \begin{column}{.45\textwidth}
+      $$
+      A = \begin{pmatrix}
+        0.28 & 0.34 & 0.28 & 0\\
+        0.0 & 0.32 & 0.21 & 0.47\\
+        0.0 & 0.0 & 0.32 & 0.68\\
+        0.0 & 0.0 & 0.0 & 1.0
+      \end{pmatrix}
+      $$
+    \end{column}
+    \begin{column}{.45\textwidth}
+      $$
+      B = \begin{pmatrix}
+        0.8 & 0.04 & 0.1 & 0.06\\
+        0.0 & 0.13 & 0.45 & 0.42\\
+        0.0 & 0.9 & 0.1 & 0.0\\
+        0.64 & 0.12 & 0.06 & 0.18\\
+      \end{pmatrix}
+      $$
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}
+  \frametitle{Intrusion Detection}
   \framesubtitle{Initialization}
-  Show Example
+  $$
+  \alpha_1 = \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}
+  $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Detection}
   \framesubtitle{Induction}
-  Show Example
+  $$
+  \alpha = 
+  \begin{pmatrix} 
+    0.04 & 0 & 0 \\
+    0.00896 & 0 & 0 & 0\\
+    0.00010035 & 0.00039603 & 0.0022579 & 0\\
+    1.8882e^{-08} & 2.8849e^{-06} & 1.3193e^{-05} & 4.0995e^{-05}\\
+    5.287e^{-10} & 4.1831e^{-07} & 4.8329e^{-07} & 3.0793e^{-06}\\
+    8.8822e^{-12} & 5.6297e^{-08}& 0 & 6.4882e^{-07} \\
+    2.487e^{-13} & 8.1081e^{-09} & 1.1825e^{-09} & 4.0517e^{-08}\\
+    4.1782e^{-15} & 1.0898e^{-09} & 0& 8.1237e^{-09}\\
+    1.1699e^{-16} & 1.5693e^{-10} & 2.2885e^{-11} & 5.1816e^{-10}
+  \end{pmatrix}
+  $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Detection}
   \framesubtitle{Termination}
-  Show Example
+  $$
+  P(0|\lambda) = \sum\limits_{i=1}^N \alpha_t(i) = 6.9797e^{-10}
+  $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Detection}
   \framesubtitle{Decision}
-  \scalebox{1}{
+  \scalebox{0.7}{
     \begin{algorithm}[H]
-      \uIf{$log(P(0|\lambda)) >~thresold$}{
+      \uIf{$log(P(0|\lambda)) >~threshold$}{
         \Return{Normal Behaviour} 
       }
       \Else{
@@ -212,7 +259,9 @@
       }
     \end{algorithm}
     }
-  \\Show Example
+  $$
+  log(P(0|\lambda) = -21.083 < threshold (-20.83) \implies Intrusion
+  $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Detection}
@@ -251,29 +300,120 @@
   \end{itemize}
 \end{frame}
 \begin{frame}
+  \frametitle{Intrusion Detection}
+  \framesubtitle{Data}
+  $S = \{1,2,3,4\}$\\
+  $M = \{1,2,3,4\}$\\
+  $\pi = \{1.0,0,0\}$\\
+  $O = \{2,1,2,4,2,3,4,3,4,3\}$
+  \begin{columns}[T]
+    \begin{column}{.45\textwidth}
+      $$
+      A = \begin{pmatrix}
+        0.28 & 0.34 & 0.28 & 0\\
+        0.0 & 0.32 & 0.21 & 0.47\\
+        0.0 & 0.0 & 0.32 & 0.68\\
+        0.0 & 0.0 & 0.0 & 1.0
+      \end{pmatrix}
+      $$
+    \end{column}
+    \begin{column}{.45\textwidth}
+      $$
+      B = \begin{pmatrix}
+        0.8 & 0.04 & 0.1 & 0.06\\
+        0.0 & 0.13 & 0.45 & 0.42\\
+        0.0 & 0.9 & 0.1 & 0.0\\
+        0.64 & 0.12 & 0.06 & 0.18\\
+      \end{pmatrix}
+      $$
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Initialization}
-  Show Example
+  \begin{columns}[T]
+    \begin{column}{.45\textwidth}
+      $$
+      \delta_1 = \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}
+      $$
+    \end{column}
+    \begin{column}{.45\textwidth}
+      $$
+      \psi_1 = \begin{pmatrix}0&0&0&0\end{pmatrix}
+      $$
+    \end{column}
+  \end{columns}
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Recursion}
-  Show Example
-\end{frame}
-\begin{frame}
+  \begin{columns}[T]
+    \begin{column}{.73\textwidth}
+      \begin{equation*}
+        \resizebox{\textwidth}{!}{$
+          \delta = 
+          \begin{pmatrix}
+            0.04 & 0& 0& 0\\
+            0.00896&0&0&0\\
+            0.00010035&0.00039603&0.0022579&0\\
+            1.6859e^{-06}&5.3227e^{-05}&0&0.00027637\\
+            1.8882e^{-08}&2.2142e^{-06}&1.006e^{-05}&3.3164e^{-05}\\
+            5.287e^{-10}&3.1885e^{-07}&3.2192e^{-07}&1.9899e^{-06}\\
+            8.8822e^{-12}&4.2853e^{-08}&0&3.5817e^{-07}\\
+            2.487e^{-13}&6.1709e^{-09}&8.9992e^{-10}&2.149e^{-08}\\
+            4.1782e^{-15}&8.2937e^{-10}&0&3.8683e^{-09}\\
+            1.1699e^{-16}&1.1943e^{-10}&1.7417e^{-11}&2.321e^{-10}
+          \end{pmatrix}
+          $}
+      \end{equation*}
+    \end{column}
+    \begin{column}{.23\textwidth}
+      \begin{equation*}
+        \resizebox{\textwidth}{!}{$
+          \psi = 
+          \begin{pmatrix}
+            0&0&0&0\\
+            0&0&0&0\\
+            0&0&0&0\\
+            0&1&0&2\\
+            0&1&1&3\\
+            0&1&2&3\\
+            0&1&0&3\\
+            0&1&1&3\\
+            0&1&0&3\\
+            0&1&1&3
+          \end{pmatrix}
+          $}
+      \end{equation*}
+    \end{column}
+  \end{columns}
+  \end{frame}
+  \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Termination}
-  Show Example
+  $$
+  P^{*} = 2.321e^{-10}
+  $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Backtracking}
-  Show Example
+  Optimal Sequence $ S^{*} = \{1,1,3,4,4,4,4,4,4,4\}$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Decision}
-  Show Example
+  \begin{table}
+    \caption{\label{tab:type}Sequences for each type of intrusion}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      Type & Sequence & Distance \\ \hline
+      xlock & $\{2,2,3,3,3,4,4,4,4,4\}$ & $3.7417$ \\ \hline
+      ipset & $\{2,3,3,3,4,4,4,4,4,4\}$ & $4.4721$ \\ \hline
+      kcms\_sparc & $\{1,1,2,2,2,2,4,4,4,4\}$ & $3$ \\ \hline
+    \end{tabular}
+  \end{table}
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Type Identification}

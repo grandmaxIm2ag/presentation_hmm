@@ -28,6 +28,26 @@ int argmax(vector<float> l){
     return idx;
 }
 
+float min(vector<float> l){
+    float res = l[0];
+    for(int i=1; i<(int)l.size(); i++){
+	if(l[i] < res){
+	    res = l[i];
+	}
+    }
+    return res;
+}
+
+int argmin(vector<float> l){
+    int idx = 0;
+    for(int i=1; i<(int)l.size(); i++){
+	if(l[i] < l[idx]){
+	    idx = i;
+	}
+    }
+    return idx;
+}
+
 
 float euclidean_dist(vector<int> x, vector<int> y){
     float res = 0.0;

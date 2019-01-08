@@ -9,8 +9,9 @@ using namespace std;
 
 int main()
 {
-    Ids ids = Ids("dataset/example2.hmm", 0.0);
-    vector<int> states = ids.get_m().viterbi(ids.read_observation("dataset/example_ok.hmm"));
-    ids.print_state_sequence(states);
+    Ids ids = Ids("dataset/example_ids_2.hmm", -20.83);
+    if(ids.is_intrusion("dataset/example_ids_seq_bad.hmm")){
+	ids.get_type_intrusion("dataset/example_ids_seq_bad.hmm");
+    }
     return 0;
 }

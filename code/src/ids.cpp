@@ -65,12 +65,28 @@ Ids::Ids(string filename, float t){
 	    count ++;
 	    break;
 	case B_:
+	    if(line.compare("") == 0){
+		s = TYPE_;
+		count=0;
+		break;
+	    }
 	    B.push_back(vector<float>(M));
 	    tmp = split(line, ' ');
 	    for(int i=0; i<M; i++){
 		B[count][i] = stof(tmp[i]);
 	    }
 	    count ++;
+	    break;
+	case TYPE_:
+	    tmp = split(line,':');
+	    Ids::type_names.push_back(tmp[0]);
+	    vector<string> tmp2 = split(tmp[1],' ');
+	    int T = (int)tmp2.size();
+	    Ids::type_seq.push_back(vector<int>(T));
+	    for(int i=0; i<T; i++){
+		Ids::type_seq[count][i] = stoi(tmp2[i]);
+	    }
+	    count++;
 	    break;
 	}
     }
@@ -86,10 +102,14 @@ bool Ids::is_intrusion(string file_obs){
     vector<int> obs=Ids::read_observation(file_obs);
 
     float p = Ids::m.forward(obs);
-    if(log(p) > p){
-	return true;
-    }else{
+    if(log(p) > Ids::threshold){
+	cout << "log(p) = " << log(p) << " > threshold (" <<
+	    Ids::threshold << ") : Normal Behaviour" << endl; 
 	return false;
+    }else{
+	cout << "log(p) = " << log(p) << " < threshold (" <<
+	    Ids::threshold << ") : Intrusion" << endl;
+	return true;
     }
 }
 
@@ -98,11 +118,13 @@ void Ids::get_type_intrusion(string file_obs){
     vector<int> obs=Ids::read_observation(file_obs);
 
     vector<int> seq = Ids::m.viterbi(obs);
+    Ids::print_state_sequence(seq);
     vector<float> dist = vector<float>(Ids::type_seq.size());
     for(int i=0; i<(int)Ids::type_seq.size(); i++){
 	dist[i] = euclidean_dist(seq, Ids::type_seq[i]);
+	cout << dist[i] << endl;
     }
-    cout << type_names[argmax(dist)] << " : " << max(dist) << "\n";
+    cout << type_names[argmin(dist)] << " : " << min(dist) << "\n";
     
 }
 

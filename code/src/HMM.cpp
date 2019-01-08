@@ -94,15 +94,18 @@ float Model::forward(vector<int> obs){
     cout.precision(5);
     for(int t=0; t<T; t++){
 	for(int i = 0; i<N; i++){
-	    cout << "alpha" << t << i << " = " <<
-		setw(9) << alpha[t][i] << "\t";
+	    cout << alpha[t][i] << "\t";
 	}
-	cout << "###############################" << endl;
+	cout<< endl;
     }
+    cout << "###############################" << endl;
+
+	
     //Termination
     for(int i=0; i<N; i++){
 	p+=alpha[T-1][i];
     }
+    cout << "P(0|l) = " << p << endl;
     return p;
 }
 
@@ -133,21 +136,21 @@ vector<int> Model::viterbi(vector<int> obs){
 	}
     }
 
+    cout << "psi = " << endl;
     cout.precision(5);
     for(int t=0; t<T; t++){
 	for(int i = 0; i<Model::N; i++){
-	    cout << "delta" << t << i << " = " <<
-		setw(9) << delta[t][i] << "\t";
+	    cout << delta[t][i] << "\t";
 	}
 	cout << endl;
     }
     cout << "###############################" << endl;
 
+    cout << "psi = " << endl; 
     cout.precision(5);
     for(int t=0; t<T; t++){
 	for(int i = 0; i<Model::N; i++){
-	    cout << "psi" << t << i << " = " <<
-		setw(5) << psi[t][i] << "\t";
+	    cout << psi[t][i] << "\t";
 	}
 	cout << endl;
     }
