@@ -46,9 +46,22 @@
 \maketitle
 
 \section{Introduction}
-
 \begin{frame}
 \frametitle{Context}
+      \begin{figure}
+        \includegraphics[scale=0.2]{img/increasintrusion.png}
+         \footfullcite{romanosky2016examining}
+       \end{figure}
+       
+  \begin{itemize}[label=.]
+    \item Number of intrusions is increasing with time and can cause a lot of damage \pause
+    \item In 2005, among 7,818 businesses 
+    
+    \begin{itemize}[label=.]
+        \item Nearly 60\% detected one or more types of cyber attack. \textit{(National Computer Security Survey (NCSS))}
+        \item Approximately 68\% of the victims of cyber theft sustained monetary loss of \$10,000 or more.
+     \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -64,6 +77,31 @@
   \item Setup vulnerability
   \item Denial of service
   \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Intrusion Detection Systems (IDS)}
+  \begin{itemize}[label=.]
+        \item \textbf{host-based}:  related to OS information 
+        \item \textbf{network based}:  network related events
+  \end{itemize}
+  \hspace{1cm}
+  \begin{itemize}[label=.]
+        \item \textbf{misuse-based}:  seek defined patterns, or signatures, within the analyzed data
+        \item \textbf{anomaly-based}:  estimate the ‘‘normal’’ behaviour of the system to be protected, and generate an anomaly alarm whenever the deviation between a given observation at an instant and the normal behaviour exceeds a predefined threshold
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Intrusion Detection Systems (IDS)}
+  \begin{itemize}[label=.]
+        \item \textbf{\textcolor{red}{host-based}}:  related to OS information 
+        \item \textbf{network based}:  network related events
+  \end{itemize}
+  \hspace{1cm}
+  \begin{itemize}[label=.]
+        \item \textbf{misuse-based}:  seek defined patterns, or signatures, within the analyzed data
+        \item \textbf{\textcolor{red}{anomaly-based}}:  estimate the ‘‘normal’’ behaviour of the system to be protected, and generate an anomaly alarm whenever the deviation between a given observation at an instant and the normal behaviour exceeds a predefined threshold
+\end{itemize}
 \end{frame}
 
 \section{Backgroung}
@@ -129,7 +167,7 @@
         Step 2, Induction :\\
         \For{$t\gets2:T$}{
           $
-          \forall i, \alpha_t(i) = \left[ \sum\limits_{j=1}^N\alpha_{t-1}(i)a_{ij}\right]
+          \forall in \alpha_t(i) = \left[ \sum\limits_{j=1}^N\alpha_{t-1}(i)a_{ij}\right]
           b_j(O_t)
           $
         }
@@ -180,10 +218,6 @@
   \frametitle{Normal Behaviour Modeling}
   \begin{itemize}
   \item Normal Behaviour is modelised by a left-to-right HMM $\lambda$.
-    \begin{figure}
-      \includegraphics[scale=0.4]{img/left_to_right.png} 
-      \caption{Left-to-Right Model with jumps}
-    \end{figure}
   \item The forward allgorithm is used to decide whether normal or not
     with a threshold.
   \end{itemize}
@@ -221,70 +255,17 @@
 \begin{frame}
   \frametitle{Intrusion Detection}
   \framesubtitle{Initialization}
-  \scalebox{1}{
-    \begin{algorithm}[H]
-      $
-      \forall i, \alpha_1(i) = \pi_i b_i(0_1)
-      $\\
-    \end{algorithm}
-  }
-  \pause
   $$
-  \begin{array}{ll}
-    O_1 =& 2 \\
-    b_i(0_1) =& (0.04, 0.13, 0.9, 0.12)\\ \pause
-    \alpha_1(1) =& \pi_1 * b_1(0_1) = 1 * 0.04 = 0.04 \\ \pause
-    \alpha_1(2) =& \pi_2 * b_2(0_1) =0 * 0.13 = 0 \\ \pause
-    \ldots \\
-    \alpha_1 =& \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}
-  \end{array}
+  \alpha_1 = \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}
   $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Detection}
   \framesubtitle{Induction}
-  \scalebox{0.8}{
-    \begin{algorithm}[H]
-      \For{$t\gets2:T$}{
-        $
-        \forall i, \alpha_t(i) = \left[ \sum\limits_{j=1}^N\alpha_{t-1}(i)a_{ij}\right]
-        b_j(O_t)
-        $
-      }
-    \end{algorithm}
-  }
-  \pause
-  $$
-  \begin{array}{ll}
-    t= & 2\\
-    O_2 =& 1 \\
-    b(0_t) =& \begin{pmatrix}0.8& 0& 0& 0.64\end{pmatrix}\\
-    \alpha_1 =& \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}\\ \pause
-    \alpha_2(1) =& \left[ \sum\limits_{j=1}^N\alpha_{t-1}(1)a_{1j}\right] b_j
-                   (O_t) = 0.00896 \\ \pause
-       & \ldots \\
-    \alpha_2 =& \begin{pmatrix} 0.00896 & 0 & 0 & 0\end{pmatrix}\\
-  
-  \end{array}
-  $$
-\end{frame}
-\begin{frame}
-  \frametitle{Intrusion Detection}
-  \framesubtitle{Induction}
-  \scalebox{0.8}{
-    \begin{algorithm}[H]
-      \For{$t\gets2:T$}{
-        $
-        \forall i, \alpha_t(i) = \left[ \sum\limits_{j=1}^N\alpha_{t-1}(i)a_{ij}\right]
-        b_j(O_t)
-        $
-      }
-    \end{algorithm}
-  }
   $$
   \alpha = 
   \begin{pmatrix} 
-    0.04 & 0 & 0 & 0\\
+    0.04 & 0 & 0 \\
     0.00896 & 0 & 0 & 0\\
     0.00010035 & 0.00039603 & 0.0022579 & 0\\
     1.8882e^{-08} & 2.8849e^{-06} & 1.3193e^{-05} & 4.0995e^{-05}\\
@@ -300,12 +281,8 @@
   \frametitle{Intrusion Detection}
   \framesubtitle{Termination}
   $$
-  \begin{array}{ll}
-    P(0|\lambda)) = &\sum\limits_{i=1}^N \alpha_t(i) \\
-                   & = 1.1699e^{-16} + 1.5693e^{-10} + 2.2885e^{-11} + 5.1816e^{-10} \\
-                   &= 6.9797e^{-10}
-  \end{array}
-$$
+  P(0|\lambda) = \sum\limits_{i=1}^N \alpha_t(i) = 6.9797e^{-10}
+  $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Detection}
@@ -356,7 +333,7 @@ $$
   Process in two steps :
   \begin{itemize}
   \item Viterbi algorithm used to find the optimal state sequence
-  \item Euclidean distance to identify the intrusion type with the
+  \item Euclidiant distance to identify the intrusion type with the
     optimal state sequence
   \end{itemize}
 \end{frame}
@@ -393,68 +370,22 @@ $$
 \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Initialization}
-  \scalebox{1}{
-    \begin{algorithm}[H]
-      \For{$i\gets1:N$}{
-        $\delta_1(i) = \pi_i b_i(0_1)$\\
-        $\psi_1(i) = 0$
-      }
-    \end{algorithm}
-  }
-  $$
-  \begin{array}{ll}
-    O_1 =& 2 \\
-    b_i(0_1) =& (0.04, 0.13, 0.9, 0.12)\\ \pause
-    \delta_1(1) =& \pi_1 * b_1(0_1) = 1 * 0.04 = 0.04 \\ \pause
-    \delta_1(2) =& \pi_2 * b_2(0_1) =0 * 0.13 = 0 \\ \pause
-    \ldots \\
-    \delta_1 = \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}
-  \end{array}\pause
-  $$
-  $$
-  \psi_1 = \begin{pmatrix}0&0&0&0\end{pmatrix}
-  $$
+  \begin{columns}[T]
+    \begin{column}{.45\textwidth}
+      $$
+      \delta_1 = \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}
+      $$
+    \end{column}
+    \begin{column}{.45\textwidth}
+      $$
+      \psi_1 = \begin{pmatrix}0&0&0&0\end{pmatrix}
+      $$
+    \end{column}
+  \end{columns}
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Recursion}
-  \scalebox{0.6}{
-    \begin{algorithm}[H]
-      \For{$t\gets2:T$}{
-        \For{$j\gets1:N$}{
-          $\delta_t(j) = \max\limits_i [\delta_{t-1}(i)a_{ij}]b_j(0_t)$\\
-          $\psi_t(j) = \argmax\limits_i [\delta_{t-1}(i)a_{ij}]b_j(0_t)$
-        }
-      }
-    \end{algorithm}
-  }
-\begin{equation*}
-  \begin{array}{ll}
-    t = & 2 \\
-    O_2 =& 1 \\
-    \delta_1 = & \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}\\ \pause
-    \delta_2(1) = & \max\limits_i [\delta_{t-1}(i)a_{i1}]b_1(0_2) \\
-    = & 0.00896 \\
-    \delta_2 = & \begin{pmatrix} 0.00896 &0 & 0& 0\end{pmatrix}\\ \pause
-    \psi_2(1) = & \argmax\limits_i [\delta_{t-1}(i)a_{i1}]b_1(0_2) \\
-    = & 0 \\  \pause
-    \psi_2 = & \begin{pmatrix} 0 &0 & 0& 0\end{pmatrix}
-  \end{array}
-\end{equation*}
- \end{frame}
-\begin{frame}
-  \frametitle{Intrusion Type Identification}
-  \framesubtitle{Recursion}
-  \scalebox{0.6}{
-    \begin{algorithm}[H]
-      \For{$t\gets2:T$}{
-        \For{$j\gets1:N$}{
-          $\delta_t(j) = \max\limits_i [\delta_{t-1}(i)a_{ij}]b_j(0_t)$\\
-          $\psi_t(j) = \argmax\limits_i [\delta_{t-1}(i)a_{ij}]b_j(0_t)$
-        }
-      }
-    \end{algorithm}
-  }
   \begin{columns}[T]
     \begin{column}{.73\textwidth}
       \begin{equation*}
@@ -496,22 +427,16 @@ $$
     \end{column}
   \end{columns}
   \end{frame}
-\begin{frame}
+  \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Termination}
   $$
-  P^{*} = \max\limits_{s \in S}[\delta_T(s)] = 2.321e^{-10}
+  P^{*} = 2.321e^{-10}
   $$
 \end{frame}
 \begin{frame}
   \frametitle{Intrusion Type Identification}
   \framesubtitle{Backtracking}
-  \scalebox{0.6}{
-    \begin{algorithm}[H]
-      \For{$t\gets{T-1}:1$}{
-        $S_t^{*} = \psi_{t+1}(s_{t+1 }^{*})$
-      }\end{algorithm}
-  }\\
   Optimal Sequence $ S^{*} = \{1,1,3,4,4,4,4,4,4,4\}$
 \end{frame}
 \begin{frame}
@@ -534,25 +459,6 @@ $$
   \begin{table}[h]
     \centering
     \caption{\label{tab:IDS}The performance of Viterbi-based Intrusion
-      Type Identification. (A:xlock, B: lpset, C:
-kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
-    \begin{tabular}{|c| c|c | c | c | c | c | c |}
-      \hline & A & B &C &D &E &F &Rate \\ \hline
-      A & 8 & 1 & \_ & \_ & \_ & \_ & $88\%$ \\ \hline
-      B & \_ & 6 & 1  & \_ & \_ & \_& $86\%$ \\ \hline
-      C & \_ & \_ & 4 & \_ & \_ & \_ & $100\%$ \\ \hline
-      D & \_ & \_ & \_ & 3 & \_ & 6 &$33\%$ \\ \hline \hline
-      E & 8 & 1 & \_ & 4 & \_ & 3 &$0\%$ \\ \hline
-      F & 8 & 1 & \_ & 2 & 1 & 6 &$86\%$ \\ \hline
-    \end{tabular}
-  \end{table}    
-\end{frame}
-\begin{frame}
-  \frametitle{Intrusion Type Identification}
-  \framesubtitle{Results}
-  \begin{table}[h]
-    \centering
-    \caption{\label{tab:IDS}The performance of Viterbi-based Intrusion
       Type Identification}
     \begin{tabular}{|c| c|c | c | c |}
       \hline
@@ -567,75 +473,22 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
 \section{Limitations \& Remarks}
 \begin{frame}
   \frametitle{Limitations \& Remarks}
-  \begin{itemize}[label=$\square$]
+  \begin{itemize}
   \item Try other distance metrics for Intrusion Type Identification :
     \fullcite{10.1007/11590316_30}\pause
-  \item Hypothesis that there is only one sequence of state per each intrusion, 
-    and that it never changes.\pause
-  \item This model is anomaly-based, but use the fact that we are supposed to 
-    know the sequence of state of the intrusion. they loose the main advantage 
-    of anomaly-based IDS to detect new types of intrusion.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Limitations \& Remarks}
-  \begin{itemize}[label=$\square$]
-  \item  Low detection efficiency, especially due to the high false positive 
-    rate usually obtained \fullcite{axelsson1998research}\pause
-  \item Absence of appropriate metrics and assessment methodologies, as well as 
-    a general framework for evaluating and comparing alternative IDS techniques
-    \fullcite{stolfo2000cost}
+  \item Bad results for Denial of Service :
+    \fullcite{7366308}
   \end{itemize}
 \end{frame}
 
 \section{Other Method}
 \begin{frame}
   \frametitle{Methods using HMM}
-  \framesubtitle{Intrusion Alert Prediction Using a Hidden Markov Mode}
-  \begin{itemize}
-  \item Alert prediction method  based on prediction of the next alert cluster
-  \item Clusters  contains :
-    \begin{itemize}[label=-]
-    \item source IP address
-    \item destination IP range
-    \item alert type
-    \item alert category.
-    \end{itemize}
-  \item Prediction of next alert cluster provides more information about future 
-    strategies of the attacker and does not depend on specific domain knowledge
-  \end{itemize}
-  \footfullcite{thanthrige2016intrusion}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Methods using HMM}
-  \framesubtitle{Anomalybased HMMs}
-  \begin{itemize}
-  \item Used for intrusion detection, with five states and six observation 
-    symbols per state
-  \item States in the model are interconnected in such a way that any state can
-    be reached from any other state
-  \item Baum-Welch method is used
-  \end{itemize}
-  \footfullcite{joshi2005investigating}
 \end{frame}
 
 \begin{frame}
   \frametitle{Other Methods}
-  \begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{img/modelComparison1.png} 
-    \footfullcite{garcia2009anomaly}
-  \end{figure}
+  %\footfullcite{Buczak2016ASO}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Other Methods}
-  \begin{figure}
-    \centering
-    \includegraphics[scale=0.25]{img/modelComparison2.png}
-    \footfullcite{buczak2016survey}
-  \end{figure} 
-\end{frame}
 \end{document}
