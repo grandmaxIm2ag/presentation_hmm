@@ -534,6 +534,25 @@ $$
   \begin{table}[h]
     \centering
     \caption{\label{tab:IDS}The performance of Viterbi-based Intrusion
+      Type Identification. (A:xlock, B: lpset, C:
+kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
+    \begin{tabular}{|c| c|c | c | c | c | c | c |}
+      \hline & A & B &C &D &E &F &Rate \\ \hline
+      A & 8 & 1 & \_ & \_ & \_ & \_ & $88\%$ \\ \hline
+      B & \_ & 6 & 1  & \_ & \_ & \_& $86\%$ \\ \hline
+      C & \_ & \_ & 4 & \_ & \_ & \_ & $100\%$ \\ \hline
+      D & \_ & \_ & \_ & 3 & \_ & 6 &$33\%$ \\ \hline \hline
+      E & 8 & 1 & \_ & 4 & \_ & 3 &$0\%$ \\ \hline
+      F & 8 & 1 & \_ & 2 & 1 & 6 &$86\%$ \\ \hline
+    \end{tabular}
+  \end{table}    
+\end{frame}
+\begin{frame}
+  \frametitle{Intrusion Type Identification}
+  \framesubtitle{Results}
+  \begin{table}[h]
+    \centering
+    \caption{\label{tab:IDS}The performance of Viterbi-based Intrusion
       Type Identification}
     \begin{tabular}{|c| c|c | c | c |}
       \hline
@@ -548,22 +567,75 @@ $$
 \section{Limitations \& Remarks}
 \begin{frame}
   \frametitle{Limitations \& Remarks}
-  \begin{itemize}
+  \begin{itemize}[label=$\square$]
   \item Try other distance metrics for Intrusion Type Identification :
     \fullcite{10.1007/11590316_30}\pause
-  \item Bad results for Denial of Service :
-    \fullcite{7366308}
+  \item Hypothesis that there is only one sequence of state per each intrusion, 
+    and that it never changes.\pause
+  \item This model is anomaly-based, but use the fact that we are supposed to 
+    know the sequence of state of the intrusion. they loose the main advantage 
+    of anomaly-based IDS to detect new types of intrusion.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limitations \& Remarks}
+  \begin{itemize}[label=$\square$]
+  \item  Low detection efficiency, especially due to the high false positive 
+    rate usually obtained \fullcite{axelsson1998research}\pause
+  \item Absence of appropriate metrics and assessment methodologies, as well as 
+    a general framework for evaluating and comparing alternative IDS techniques
+    \fullcite{stolfo2000cost}
   \end{itemize}
 \end{frame}
 
 \section{Other Method}
 \begin{frame}
   \frametitle{Methods using HMM}
+  \framesubtitle{Intrusion Alert Prediction Using a Hidden Markov Mode}
+  \begin{itemize}
+  \item Alert prediction method  based on prediction of the next alert cluster
+  \item Clusters  contains :
+    \begin{itemize}[label=-]
+    \item source IP address
+    \item destination IP range
+    \item alert type
+    \item alert category.
+    \end{itemize}
+  \item Prediction of next alert cluster provides more information about future 
+    strategies of the attacker and does not depend on specific domain knowledge
+  \end{itemize}
+  \footfullcite{thanthrige2016intrusion}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Methods using HMM}
+  \framesubtitle{Anomalybased HMMs}
+  \begin{itemize}
+  \item Used for intrusion detection, with five states and six observation 
+    symbols per state
+  \item States in the model are interconnected in such a way that any state can
+    be reached from any other state
+  \item Baum-Welch method is used
+  \end{itemize}
+  \footfullcite{joshi2005investigating}
 \end{frame}
 
 \begin{frame}
   \frametitle{Other Methods}
-  %\footfullcite{Buczak2016ASO}
+  \begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{img/modelComparison1.png} 
+    \footfullcite{garcia2009anomaly}
+  \end{figure}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Other Methods}
+  \begin{figure}
+    \centering
+    \includegraphics[scale=0.25]{img/modelComparison2.png}
+    \footfullcite{buczak2016survey}
+  \end{figure} 
+\end{frame}
 \end{document}
