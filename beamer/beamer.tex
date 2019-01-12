@@ -44,9 +44,9 @@
 }
 
 \title{Viterbi Algorithm for Intrusion Type Identification in Anomaly
-  Detection System}
-\author{ } 
-\institute{ }
+  Detection System \footfullcite{DBLP:conf/wisa/KooC03}}
+\author{ Jonathan Bleuzen \and Flora Gautheron \and Maxence Grand} 
+\institute{ M2 Mosig}
 \date{january 14th 2019}
 
 \maketitle
@@ -563,15 +563,15 @@ $$
           \psi = 
           \begin{pmatrix}
             0&0&0&0\\
-            0&0&0&0\\
-            0&0&0&0\\
-            0&1&0&2\\
-            0&1&1&3\\
-            0&1&2&3\\
-            0&1&0&3\\
-            0&1&1&3\\
-            0&1&0&3\\
-            0&1&1&3
+            1&1&1&1\\
+            1&1&1&1\\
+            1&2&1&3\\
+            1&2&2&4\\
+            1&2&3&4\\
+            1&2&1&4\\
+            1&2&2&4\\
+            1&2&1&4\\
+            1&2&2&4
           \end{pmatrix}
           $}
       \end{equation*}
@@ -655,7 +655,7 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
   \item Hypothesis that there is only one sequence of state per each intrusion, 
     and that it never changes.\pause
   \item This model is anomaly-based, but use the fact that we are supposed to 
-    know the sequence of state of the intrusion. they loose the main advantage 
+    know the sequence of state of the intrusion. They loose the main advantage 
     of anomaly-based IDS to detect new types of intrusion.
   \end{itemize}
 \end{frame}
@@ -674,7 +674,7 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
 \section{Other Method}
 \begin{frame}
   \frametitle{Methods using HMM}
-  \framesubtitle{Intrusion Alert Prediction Using a Hidden Markov Mode}
+  \framesubtitle{Intrusion Alert Prediction Using a Hidden Markov Mode\footfullcite{thanthrige2016intrusion}}
   \begin{itemize}
   \item Alert prediction method  based on prediction of the next alert cluster
   \item Clusters  contains :
@@ -687,11 +687,10 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
   \item Prediction of next alert cluster provides more information about future 
     strategies of the attacker and does not depend on specific domain knowledge
   \end{itemize}
-  \footfullcite{thanthrige2016intrusion}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Methods using HMM}
+  \frametitle{Methods using HMM\footfullcite{joshi2005investigating}}
   \framesubtitle{Anomalybased HMMs}
   \begin{itemize}
   \item Used for intrusion detection, with five states and six observation 
@@ -700,7 +699,6 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
     be reached from any other state
   \item Baum-Welch method is used
   \end{itemize}
-  \footfullcite{joshi2005investigating}
 \end{frame}
 
 \begin{frame}
@@ -735,6 +733,7 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
 \end{frame}
 
 \begin{frame}
+Thank you for your attention.\\
 Any question ?
 \end{frame}
 \end{document}
