@@ -120,7 +120,7 @@ vector<int> Model::viterbi(vector<int> obs){
     for(int t=0; t<T; t++) psi[t] = vector<float>(N);
 
     //Initialization
-    for(int i; i<N; i++){
+    for(int i=0; i<N; i++){
 	delta[0][i] = Model::pi[i]*Model::B[i][obs[0]];
     }
 
@@ -165,6 +165,9 @@ vector<int> Model::viterbi(vector<int> obs){
     for(int t=T-2; t>= 0; t--){
 	optimal_sequence[t] = psi[t+1][optimal_sequence[t+1]];
     }
-    
+
+    for(int t = 0; t< T; t++){
+	cout << optimal_sequence[t] << ",";
+    }
     return optimal_sequence;
 }

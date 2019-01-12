@@ -37,6 +37,12 @@
 \def\bibfont{\tiny}%
 \begin{document}
 
+\AtBeginSection[]{
+  \begin{frame}{Outline}
+  \small \tableofcontents[currentsection, hideothersubsections]
+  \end{frame} 
+}
+
 \title{Viterbi Algorithm for Intrusion Type Identification in Anomaly
   Detection System}
 \author{ } 
@@ -109,7 +115,7 @@
   \frametitle{Markov Chain}
   \begin{columns}[T]
     \begin{column}{.7\textwidth}
-      A markov Chain is defined by :
+      A markov Chain \footfullcite{MarkovChain} is defined by :
       \begin{itemize}[label=.]
       \item S, A finite set of N states
       \item $\pi$, A vector of initial probabilities over S :
@@ -138,7 +144,7 @@
 \begin{frame}
   \frametitle{HMM - Hidden Markov Model}
   \begin{itemize}[label=--]
-  \item Hidden Markov Model is a statistical model in which the
+  \item Hidden Markov Model \footfullcite{baum1966statistical} is a statistical model in which the
     modeled system is supposed to be a Markovian process of unknown
     parameters.\pause
   \item Hidden Markov Model can be viewed as a Bayesian Network\pause
@@ -162,7 +168,7 @@
       \Output{ $P(0|\lambda)$}
       Step 1, Initialization :
         $
-        \forall i, \alpha_1(i) = \pi_i b_i(0_1)
+        \forall i, \alpha_1(i) = \pi_i b_i(O_1)
         $\\
         Step 2, Induction :\\
         \For{$t\gets2:T$}{
@@ -173,7 +179,7 @@
         }
         Step 3, Termination :
         $
-        P(0|\lambda) = \sum\limits_{i=1}^N \alpha_t(i)
+        P(0|\lambda) = \sum\limits_{i=1}^N \alpha_T(i)
         $
     \end{algorithm}
   }
@@ -262,7 +268,7 @@
   \scalebox{1}{
     \begin{algorithm}[H]
       $
-      \forall i, \alpha_1(i) = \pi_i b_i(0_1)
+      \forall i, \alpha_1(i) = \pi_i b_i(O_1)
       $\\
     \end{algorithm}
   }
@@ -270,9 +276,9 @@
   $$
   \begin{array}{ll}
     O_1 =& 2 \\
-    b_i(0_1) =& (0.04, 0.13, 0.9, 0.12)\\ \pause
-    \alpha_1(1) =& \pi_1 * b_1(0_1) = 1 * 0.04 = 0.04 \\ \pause
-    \alpha_1(2) =& \pi_2 * b_2(0_1) =0 * 0.13 = 0 \\ \pause
+    b_i(O_1) =& (0.04, 0.13, 0.9, 0.12)\\ \pause
+    \alpha_1(1) =& \pi_1 * b_1(O_1) = 1 * 0.04 = 0.04 \\ \pause
+    \alpha_1(2) =& \pi_2 * b_2(O_1) =0 * 0.13 = 0 \\ \pause
     \ldots \\
     \alpha_1 =& \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}
   \end{array}
@@ -296,7 +302,7 @@
   \begin{array}{ll}
     t= & 2\\
     O_2 =& 1 \\
-    b(0_t) =& \begin{pmatrix}0.8& 0& 0& 0.64\end{pmatrix}\\
+    b(O_t) =& \begin{pmatrix}0.8& 0& 0& 0.64\end{pmatrix}\\
     \alpha_1 =& \begin{pmatrix} 0.04 & 0 & 0 & 0\end{pmatrix}\\ \pause
     \alpha_2(1) =& \left[ \sum\limits_{j=1}^N\alpha_{t-1}(1)a_{1j}\right] b_j
                    (O_t) = 0.00896 \\ \pause
@@ -326,6 +332,7 @@
     0.00896 & 0 & 0 & 0\\
     0.00010035 & 0.00039603 & 0.0022579 & 0\\
     1.8882e^{-08} & 2.8849e^{-06} & 1.3193e^{-05} & 4.0995e^{-05}\\
+    1.6859e^{-06} & 5.3227e^{-05} & 0& 0.00027637\\
     5.287e^{-10} & 4.1831e^{-07} & 4.8329e^{-07} & 3.0793e^{-06}\\
     8.8822e^{-12} & 5.6297e^{-08}& 0 & 6.4882e^{-07} \\
     2.487e^{-13} & 8.1081e^{-09} & 1.1825e^{-09} & 4.0517e^{-08}\\
@@ -339,7 +346,7 @@
   \framesubtitle{Termination}
   $$
   \begin{array}{ll}
-    P(0|\lambda)) = &\sum\limits_{i=1}^N \alpha_t(i) \\
+    P(0|\lambda)) = &\sum\limits_{i=1}^N \alpha_T(i) \\
                    & = 1.1699e^{-16} + 1.5693e^{-10} + 2.2885e^{-11} + 5.1816e^{-10} \\
                    &= 6.9797e^{-10}
   \end{array}
