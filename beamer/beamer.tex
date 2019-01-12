@@ -44,9 +44,9 @@
 }
 
 \title{Viterbi Algorithm for Intrusion Type Identification in Anomaly
-  Detection System\footfullcite{DBLP:conf/wisa/KooC03}}
-\author{Bleuzen Jonathan \and Flora Gautheron \and Maxence Grand} 
-\institute{M2 MOSIG }
+  Detection System}
+\author{ } 
+\institute{ }
 \date{january 14th 2019}
 
 \maketitle
@@ -262,6 +262,7 @@
     \end{column}
   \end{columns}
 \end{frame}
+
 \begin{frame}
   \frametitle{Intrusion Detection}
   \framesubtitle{Initialization}
@@ -272,7 +273,50 @@
       $\\
     \end{algorithm}
   }
-  \pause
+\end{frame}
+
+\begin{frame}
+  \frametitle{Intrusion Detection}
+  \framesubtitle{Data}
+  $S = \{1,2,3,4\}$\\
+  $M = \{1,2,3,4\}$\\
+  $\pi = \{1.0,0,0\}$\\
+  $O = \{\textcolor{red}{2},1,2,4,2,3,4,3,4,3\}$
+  \begin{columns}[T]
+    \begin{column}{.45\textwidth}
+      $$
+      A = \begin{pmatrix}
+        0.28 & 0.34 & 0.28 & 0\\
+        0.0 & 0.32 & 0.21 & 0.47\\
+        0.0 & 0.0 & 0.32 & 0.68\\
+        0.0 & 0.0 & 0.0 & 1.0
+      \end{pmatrix}
+      $$
+    \end{column}
+    \begin{column}{.45\textwidth}
+      $$
+      B = \begin{pmatrix}
+        0.8 & \textcolor{red}{0.04} & 0.1 & 0.06\\
+        0.0 & \textcolor{red}{0.13} & 0.45 & 0.42\\
+        0.0 & \textcolor{red}{0.9} & 0.1 & 0.0\\
+        0.64 & \textcolor{red}{0.12} & 0.06 & 0.18\\
+      \end{pmatrix}
+      $$
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Intrusion Detection}
+  \framesubtitle{Initialization}
+  \scalebox{1}{
+    \begin{algorithm}[H]
+      $
+      \forall i, \alpha_1(i) = \pi_i b_i(O_1)
+      $\\
+    \end{algorithm}
+  }
   $$
   \begin{array}{ll}
     O_1 =& 2 \\
@@ -449,7 +493,7 @@ $$
   $$
   \begin{array}{ll}
     O_1 =& 2 \\
-    b(0_1) =& (0.04, 0.13, 0.9, 0.12)\\ \pause
+    b_i(0_1) =& (0.04, 0.13, 0.9, 0.12)\\ \pause
     \delta_1(1) =& \pi_1 * b_1(0_1) = 1 * 0.04 = 0.04 \\ \pause
     \delta_1(2) =& \pi_2 * b_2(0_1) =0 * 0.13 = 0 \\ \pause
     \ldots \\
@@ -483,7 +527,7 @@ $$
     \delta_2 = & \begin{pmatrix} 0.00896 &0 & 0& 0\end{pmatrix}\\ \pause
     \psi_2(1) = & \argmax\limits_i [\delta_{t-1}(i)a_{i1}]b_1(0_2) \\
     = & 0 \\  \pause
-    \psi_2 = & \begin{pmatrix} 1 &1 & 1& 1\end{pmatrix}
+    \psi_2 = & \begin{pmatrix} 0 &0 & 0& 0\end{pmatrix}
   \end{array}
 \end{equation*}
  \end{frame}
@@ -526,15 +570,15 @@ $$
           \psi = 
           \begin{pmatrix}
             0&0&0&0\\
-            1&1&1&1\\
-            1&1&1&1\\
-            1&2&1&3\\
-            1&2&2&4\\
-            1&2&3&4\\
-            1&2&1&4\\
-            1&2&2&4\\
-            1&2&1&4\\
-            1&2&2&4
+            0&0&0&0\\
+            0&0&0&0\\
+            0&1&0&2\\
+            0&1&1&3\\
+            0&1&2&3\\
+            0&1&0&3\\
+            0&1&1&3\\
+            0&1&0&3\\
+            0&1&1&3
           \end{pmatrix}
           $}
       \end{equation*}
@@ -637,7 +681,7 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
 \section{Other Method}
 \begin{frame}
   \frametitle{Methods using HMM}
-  \framesubtitle{Intrusion Alert Prediction Using a Hidden Markov Mode\footfullcite{thanthrige2016intrusion}}
+  \framesubtitle{Intrusion Alert Prediction Using a Hidden Markov Mode}
   \begin{itemize}
   \item Alert prediction method  based on prediction of the next alert cluster
   \item Clusters  contains :
@@ -650,11 +694,12 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
   \item Prediction of next alert cluster provides more information about future 
     strategies of the attacker and does not depend on specific domain knowledge
   \end{itemize}
+  \footfullcite{thanthrige2016intrusion}
 \end{frame}
 
 \begin{frame}
   \frametitle{Methods using HMM}
-  \framesubtitle{Anomalybased HMMs\footfullcite{joshi2005investigating}}
+  \framesubtitle{Anomalybased HMMs}
   \begin{itemize}
   \item Used for intrusion detection, with five states and six observation 
     symbols per state
@@ -662,6 +707,7 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
     be reached from any other state
   \item Baum-Welch method is used
   \end{itemize}
+  \footfullcite{joshi2005investigating}
 \end{frame}
 
 \begin{frame}
@@ -696,7 +742,6 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
 \end{frame}
 
 \begin{frame}
-Thank you for your attention\\
 Any question ?
 \end{frame}
 \end{document}
