@@ -228,7 +228,7 @@
       \includegraphics[scale=0.4]{img/left_to_right.png} 
       \caption{Left-to-Right Model with jumps}
     \end{figure}
-  \item The forward allgorithm is used to decide whether normal or not
+  \item The forward algorithm is used to decide whether normal or not
     with a threshold.
   \end{itemize}
 \end{frame}
@@ -383,7 +383,7 @@
   \framesubtitle{Termination}
   $$
   \begin{array}{ll}
-    P(0|\lambda)) = &\sum\limits_{i=1}^N \alpha_T(i) \\
+    P(0|\lambda) = &\sum\limits_{i=1}^N \alpha_T(i) \\
                    & = 1.1699e^{-16} + 1.5693e^{-10} + 2.2885e^{-11} + 5.1816e^{-10} \\
                    &= 6.9797e^{-10}
   \end{array}
@@ -690,8 +690,8 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Methods using HMM\footfullcite{joshi2005investigating}}
-  \framesubtitle{Anomalybased HMMs}
+  \frametitle{Methods using HMM}
+  \framesubtitle{Anomaly-based HMMs\footfullcite{joshi2005investigating}}
   \begin{itemize}
   \item Used for intrusion detection, with five states and six observation 
     symbols per state
@@ -724,11 +724,12 @@ kcms\_sparc, D: processe creation, E: fill the disk, F: exhausting the memory)}
   \frametitle{Conclusion}
   \begin{itemize}
   \item Good results for Intrusion detection
-  \item For type indentification :
+  \item For type identification :
     \begin{itemize}
     \item Good results for Buffer Overflow (90\%)
     \item Bad results for Denial of Service (36\%)
     \end{itemize}
+    \item Possible improvement with other models
   \end{itemize}
 \end{frame}
 
